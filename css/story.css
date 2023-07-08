@@ -1,0 +1,50 @@
+@import url('reset.css');
+@import url('global.css');
+@import url('header.css');
+@import url('footer.css');
+@import url('animation.css');
+
+/* 시작하기 버튼 */
+header .navbar ul li a button{
+  width: 5rem;
+  height: 2rem;
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-size: .9rem;
+  transition: .2s;
+}
+header .navbar ul li a button:hover{
+  background: var(--secondary-color);
+  letter-spacing: .1rem;
+}
+/* 검색창 */
+header .navbar ul li .search-container{
+  display: flex;
+}
+header .navbar ul li .search-container .search{
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+header .navbar ul li .search-container .search:hover{
+  background: var(--secondary-color);
+}
+header .navbar ul li .search-container .search span{
+  font-size: 1.5rem;
+}
+header .navbar ul li .search-container .keyword{
+  width: 20rem;
+  padding-left: .5rem;
+  border: 2px solid var(--primary-color);
+  outline: none;
+}
+header .navbar ul li .search-container .keyword::placeholder{
+  color: var(--primary-color);
+}
+header .navbar ul li .search-container .keyword:focus{
+  color: var(--secondary-color);
+}
