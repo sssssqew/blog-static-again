@@ -52,4 +52,16 @@ window.addEventListener("load", (event) => {
       }
     });
   });
+
+  let lastScrollLocation = 0 // 최근 스크롤 위치 기억하기
+  let sectionToMove, menulink
+   
+
+  window.addEventListener('scroll', (event) => {
+    
+    // 스크롤이 끝났음을 감지하기
+    scroller.isScrollended()
+    .then(result => console.log('scroll ended!'))
+    .catch(err => console.log('scrolling...'))
+  })
 })
