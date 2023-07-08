@@ -63,5 +63,11 @@ window.addEventListener("load", (event) => {
     scroller.isScrollended()
     .then(result => console.log('scroll ended!'))
     .catch(err => console.log('scrolling...'))
+    
+
+    // 스크롤이 어느정도 아래로 내려오면 헤더에 그림자 주기
+    scroller.getScrollPosition() > header.offsetHeight ? 
+      header.classList.add('active') 
+      : header.classList.remove('active')
   })
 })
