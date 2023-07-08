@@ -89,3 +89,9 @@ header .navbar ul li .search-container .keyword:focus{
   background: var(--secondary-color);
   letter-spacing: .2rem;
 }
+/* 푸터 */
+.footer{
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+}
