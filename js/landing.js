@@ -92,5 +92,24 @@ window.addEventListener("load", (event) => {
         paragraph.classList.remove('show')
       }
     })
+
+    if(!scroller.getScrollState()){ // 스크롤이 멈춘 경우 
+      
+      menulink = nav.querySelector('a.active').closest('li') // 현재 화면에 보이는 섹션에 대한 네비게이션 메뉴 
+
+      // 스크롤시 이전, 다음 섹션으로 불연속적으로 이동하기
+      if (scroller.getScrollPosition() > lastScrollLocation) {              // 스크롤을 내리는 경우 
+        lastScrollLocation = scroller.getScrollPosition()                   // 최근 스크롤 위치 저장
+        sectionToMove = menulink.nextElementSibling?.querySelector('a')     // 다음 메뉴
+      } else {                                                              // 스크롤을 올리는 경우 
+        lastScrollLocation = scroller.getScrollPosition()                   // 최근 스크롤 위치 저장            
+        sectionToMove = menulink.previousElementSibling?.querySelector('a') // 이전 메뉴
+      }
+
+      // 스크롤링할때 이전/다음 메뉴를 프로그램적으로 클릭함으로써 해당 섹션으로 이동함   
+      if(sectionToMove?.getAttribute('href') !== undefined){ // 이동할 이전/다음 섹션이 존재하는 경우
+        sectionToMove.click() // 이미 작성된 a 태그의 클릭 이벤트에서 처리함
+      }
+    }
   })
 })
