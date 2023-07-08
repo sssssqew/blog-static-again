@@ -1,3 +1,5 @@
+const scroller = new Scroller(false) // 스크롤 객체 생성 
+
 window.addEventListener("load", (event) => {
   // 테마변경 (다크모드/ 일반모드)
   const mode = document.querySelector('.mode')
@@ -13,5 +15,19 @@ window.addEventListener("load", (event) => {
         icon.classList.remove('active') 
         : icon.classList.add('active')
     }
+  })
+
+  // 브라우저 상단으로 스크롤하기
+  const arrowUp = document.querySelector('.footer .icons .scroll-up') // 위쪽 화살표 클릭 
+  arrowUp.addEventListener('click', (event) => {
+    history.pushState({}, "", `#`); // URL 주소 변경 
+    scroller.setScrollPosition({top: 0, behavior: 'smooth'})
+  })
+
+  const logo = document.querySelector('header .logo') // 로고 클릭 
+  logo.addEventListener('click', (event) => {
+    event.preventDefault() // 부드러운 스크롤링
+    history.pushState({}, "", `#`); // URL 주소 변경 
+    scroller.setScrollPosition({top: 0, behavior: 'smooth'}) 
   })
 })
