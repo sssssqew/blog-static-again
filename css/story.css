@@ -94,4 +94,8 @@ header .navbar ul li .search-container .keyword:focus{
   position: fixed;
   z-index: 1;
   bottom: 0;
+  opacity: 0;
+}
+.footer:hover{
+  opacity: 1;
 }
