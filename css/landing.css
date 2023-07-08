@@ -3,3 +3,55 @@
 @import url('header.css');
 @import url('footer.css');
 @import url('animation.css');
+
+/* 서비스, 스토리, 연락처 */
+section:not(.footer){
+  width: 50vw;  
+  height: calc(100vh - var(--header-height)); /* 헤더높이만큼 제외함 */
+  min-height: calc(100vh - var(--header-height)); /* 헤더높이만큼 제외함 */
+  max-height: calc(100vh - var(--header-height)); /* 헤더높이만큼 제외함 */
+  margin: 0 auto;
+  position: relative;
+}
+/* 이미지 */
+.image img{
+  height: 50vh;
+  width: 100%;
+}
+/* 텍스트 */
+.content{
+  padding: 3rem 2rem;
+}
+.content h3{
+  width: 50%;
+  font-size: 2rem;
+  color: var(--primary-color);
+  transition: .7s ease-out;
+}
+.content p{
+  font-size: 1.2rem;
+  padding: 1rem 0;
+  width: 50%;
+  margin-left: auto;
+  line-height: 2rem;
+  transition: .7s ease-out;
+}
+/* 버튼 */
+.content button{
+  width: 12rem;
+  height: 3.5rem;
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: .2s;
+  margin-top: 2rem;
+  position: absolute;
+  bottom: 2rem;
+}
+.content button:hover{
+  background: var(--secondary-color);
+  letter-spacing: .2rem;
+}
