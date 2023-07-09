@@ -1,0 +1,27 @@
+@import url('reset.css');
+@import url('global.css');
+@import url('header.css');
+@import url('footer.css');
+@import url('animation.css');
+
+/* 헤더 */
+header .navbar ul li .material-icons{ /* 종모양 스타일링 추가 */
+  font-size: 2rem;
+}
+header .navbar ul li .account img{ /* 아바타 스타일링 추가 */
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+
+/* 푸터 */
+.footer{
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  transition: 1s ease-in-out; 
+}
+.footer.hide{
+  opacity: 0;
+  height: 0;
+}
