@@ -187,3 +187,43 @@ header .navbar ul li .account img{ /* 아바타 스타일링 추가 */
   background: var(--secondary-color);
   box-shadow: none;
 }
+
+/* 반응형웹 */
+@media (max-width: 420px){
+  header{
+    padding: 1rem 1rem;
+  }
+  .blog-container{
+    width: 90vw;
+  }
+  .blog-container > div:not(.follow) > ul {
+    flex-flow: column;
+  }
+  .blog-container > div:not(.follow) > ul > li:nth-child(2) {
+    margin: 0rem 0rem;
+  }
+}
+@media (max-width: 300px){
+  header{
+    padding: .5rem .5rem;
+  }
+  header .logo {
+    font-size: 1rem;
+  }
+  header .logo i{
+    font-size: 2rem;
+  }
+  header .navbar ul li {
+    margin: 0 .5rem;
+  }
+  .blog-container > div:not(.follow) > h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  .footer .icons{
+    padding: 1rem 0;
+  }
+  .footer .icons .scroll-up {
+    margin-right: 0.2rem;
+  }
+}
