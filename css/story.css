@@ -196,3 +196,66 @@ header .navbar ul li .search-container .keyword:focus{
   object-fit: cover;
   object-position: center;
 }
+
+/* 반응형웹 */
+@media (max-width: 420px){
+  header{
+    height: var(--header-height);
+  }
+  header .navbar ul li .search-container{ /* 검색창을 헤더 하단에 고정 */
+    position: fixed; top: var(--header-height); 
+    left: 0; right: 0;
+    margin: 0 auto;
+    width: 85%;
+  }
+  .category-container{
+    margin-top: 3rem; /* 검색창 아래쪽에 배치 */
+  }
+  .blog-container{ /* 블로그 너비 */
+    width: 90vw;
+  }
+  .blog-container .blog{ /* 블로그 컨텐츠 순서 변경 */
+    flex-wrap: wrap;
+    flex-flow: column-reverse;
+    box-shadow: 0 0 .2rem rgba(0, 0, 0, .3);
+    margin-bottom: 2.5rem;
+    border-bottom: none;
+  }
+  .blog-container .blog .middle{
+    margin: 2rem 0rem;
+  }
+  .blog-container .blog .left,  /* 이미지를 화면에 가득 채움 */
+  .blog-container .blog .right{
+    width: 100%;
+    min-width: 100%;
+  }
+  .blog-container .blog .middle{
+    padding: 0rem 0rem;
+  }
+}
+@media (max-width: 300px){
+  header{
+    justify-content: center;
+  }
+  header .logo{
+    font-size: 1rem;
+  }
+  header .logo i{
+    font-size: 2rem;
+  }
+  header .mode{
+    font-size: 2rem;
+  }
+  header .navbar ul li a button{
+    width: 4rem;
+    height: 1.5rem;
+    border-radius: 1rem;
+    font-size: .5rem;
+  }
+  header .navbar ul li .search-container{
+    width: 90%; top: 66px;
+  }
+  header .navbar ul li .search-container .keyword::placeholder{
+    font-size: .7rem;
+  }
+}
