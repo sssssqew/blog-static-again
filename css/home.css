@@ -66,6 +66,7 @@ header .navbar ul li .account img{ /* 아바타 스타일링 추가 */
   border-bottom: none;
   box-shadow: 0 0 .2rem rgba(0, 0, 0, .3);
   cursor: pointer;
+  transition: .5s;
 }
 .blog-container .blog > div > ul{
   display: flex;
