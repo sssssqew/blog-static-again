@@ -13,6 +13,21 @@ header .navbar ul li .account img{ /* 아바타 스타일링 추가 */
   height: 2rem;
   border-radius: 50%;
 }
+header .navbar ul li a button{
+  width: 5rem;
+  height: 2rem;
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-size: .9rem;
+  transition: .2s;
+}
+header .navbar ul li a button:hover{
+  background: var(--secondary-color);
+  letter-spacing: .1rem;
+}
 
 /* 푸터 */
 .footer{
