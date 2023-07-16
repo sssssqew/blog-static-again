@@ -69,6 +69,7 @@ header .toolbox > div> a label{
   border: none;
   outline: none;
   font-size: 1rem;
+  word-break: break-all; /* 파이어폭스 글자가 div 영역을 벗어나는 문제 */
 }
 .post-container img,
 .post-contents .video-file { /* 이미지 & 비디오 파일 */
