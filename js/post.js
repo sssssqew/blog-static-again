@@ -25,4 +25,22 @@ window.addEventListener("load", (event) => {
         : icon.classList.add('active')
     }
   })
+
+  // 태그입력 기능
+  const tagList = document.querySelector('.post-container .post-tags ul')
+  // const tagInput = document.querySelector('.post-container .post-tags input') 
+  const tagslimit = 10 // 태그 갯수 제한
+  const tagLength = 10 // 태그 글자수 제한
+
+  tagInput.addEventListener('keyup', function(event){
+    console.log('태그 입력중...', event.key)
+    
+    const trimTag = this.value.trim()
+    if(event.key === 'Enter' && trimTag !== '' && trimTag.length <= tagLength && tagList.children.length < tagslimit){
+      const tag = document.createElement('li') // 태그 생성 
+      tag.innerHTML = `#${trimTag}<a href='#'>x</a>`
+      tagList.appendChild(tag) // 태그 추가
+      this.value = '' // 태그 입력창 초기화
+    }
+  })
 })
