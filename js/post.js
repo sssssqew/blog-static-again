@@ -43,4 +43,14 @@ window.addEventListener("load", (event) => {
       this.value = '' // 태그 입력창 초기화
     }
   })
+
+  // 태그 삭제 (이벤트 위임 사용)
+  tagList.addEventListener('click', function(event){
+    console.log(event.target, event.target.parentElement, event.target.hasAttribute('href'))
+
+    event.preventDefault() // 삭제후 브라우저 상단으로 이동하는 문제 해결 
+    if(event.target.hasAttribute('href')){ // 취소(x)를 클릭하는 경우 (a 태그인지 확인)
+      tagList.removeChild(event.target.parentElement) // 클릭이 발생한 a 요소의 부모요소인 li 태그 삭제
+    }
+  })
 })
