@@ -61,7 +61,10 @@ window.addEventListener("load", (event) => {
     
     // 스크롤이 끝났음을 감지하기
     scroller.isScrollended()
-    .then(result => console.log('scroll ended!'))
+    .then(result => {
+      console.log('scroll ended!')
+      lastScrollLocation = scroller.getScrollPosition()  // 최근 스크롤 위치 저장
+    })
     .catch(err => console.log('scrolling...'))
     
 
@@ -99,10 +102,8 @@ window.addEventListener("load", (event) => {
 
       // 스크롤시 이전, 다음 섹션으로 불연속적으로 이동하기
       if (scroller.getScrollPosition() > lastScrollLocation) {              // 스크롤을 내리는 경우 
-        lastScrollLocation = scroller.getScrollPosition()                   // 최근 스크롤 위치 저장
         sectionToMove = menulink.nextElementSibling?.querySelector('a')     // 다음 메뉴
-      } else {                                                              // 스크롤을 올리는 경우 
-        lastScrollLocation = scroller.getScrollPosition()                   // 최근 스크롤 위치 저장            
+      } else {                                                              // 스크롤을 올리는 경우            
         sectionToMove = menulink.previousElementSibling?.querySelector('a') // 이전 메뉴
       }
 
