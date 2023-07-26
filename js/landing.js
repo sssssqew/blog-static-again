@@ -1,6 +1,8 @@
 const scroller = new Scroller(false) // 스크롤 객체 생성 
 
 window.addEventListener("load", (event) => {
+  scroller.setScrollPosition({ top: 0, behavior: "smooth" })
+
   // 테마변경 (다크모드/ 일반모드)
   const mode = document.querySelector('.mode')
   const icons = mode.querySelectorAll('.fa-solid')
@@ -54,7 +56,7 @@ window.addEventListener("load", (event) => {
   });
 
   let lastScrollLocation = 0 // 최근 스크롤 위치 기억하기
-  let sectionToMove, menulink
+  let index = 0 // 현재 메뉴를 선택하기 위한 인덱스 값 
    
 
   window.addEventListener('scroll', (event) => {
@@ -96,20 +98,21 @@ window.addEventListener("load", (event) => {
       }
     })
 
+    const menus = nav.querySelectorAll('li a') 
     if(!scroller.getScrollState()){ // 스크롤이 멈춘 경우 
-      
-      menulink = nav.querySelector('a.active').closest('li') // 현재 화면에 보이는 섹션에 대한 네비게이션 메뉴 
-
+  
       // 스크롤시 이전, 다음 섹션으로 불연속적으로 이동하기
       if (scroller.getScrollPosition() > lastScrollLocation) {              // 스크롤을 내리는 경우 
-        sectionToMove = menulink.nextElementSibling?.querySelector('a')     // 다음 메뉴
+        index++                                                             // 다음 메뉴
       } else {                                                              // 스크롤을 올리는 경우            
-        sectionToMove = menulink.previousElementSibling?.querySelector('a') // 이전 메뉴
+        index--                                                             // 이전 메뉴
       }
+      if(index < 0) index = 0
+      if(index > menus.length - 1) index = menus.length - 1
 
       // 스크롤링할때 이전/다음 메뉴를 프로그램적으로 클릭함으로써 해당 섹션으로 이동함   
-      if(sectionToMove?.getAttribute('href') !== undefined){ // 이동할 이전/다음 섹션이 존재하는 경우
-        sectionToMove.click() // 이미 작성된 a 태그의 클릭 이벤트에서 처리함
+      if(menus[index]){ // 이동할 이전/다음 섹션이 존재하는 경우
+        menus[index].click() // 이미 작성된 a 태그의 클릭 이벤트에서 처리함
       }
     }
   })

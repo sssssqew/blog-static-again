@@ -85,6 +85,16 @@ section:not(.footer){
     bottom: 1.5rem;
   }
 }
+/* 푸터 */
+.footer{
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  opacity: 0;
+}
+.footer:hover{
+  opacity: 1;
+}
 @media (max-width: 830px){ /* 텍스트 폰트 크기 조정 */
   .content h3{
     font-size: 3rem;

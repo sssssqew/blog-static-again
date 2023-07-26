@@ -25,7 +25,7 @@ class Scroller{
       this.#scrollEndTimer = setTimeout(() => {
         this.#setScrollState(false)
         resolve()
-      }, 100)
+      }, 50)
     })
   }
 }
