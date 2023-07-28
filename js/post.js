@@ -113,6 +113,55 @@ window.addEventListener("load", (event) => {
     lastCaretLine = document.getSelection().anchorNode // 편집기 내부 커서가 위치한 곳의 엘리먼트 
     console.log(lastCaretLine.parentNode, lastCaretLine, lastCaretLine.length)
   })
+  // 텍스트 포맷
+  const textTool = document.querySelector('.text-tool')
+  textTool.addEventListener('click', function(event){
+    console.log(event.target.innerText)
+    switch(event.target.innerText){
+      case 'format_bold':
+        changeTextFormat('bold')
+        break 
+      case 'format_italic':
+        changeTextFormat('italic')
+        break
+      case 'format_underlined':
+        changeTextFormat('underline')
+        break 
+      case 'format_strikethrough':
+        changeTextFormat('strikeThrough')
+        break 
+      case 'format_color_text':
+        changeTextFormat('foreColor', 'orange')
+        break 
+      case 'format_color_fill':
+        changeTextFormat('backColor', 'black')
+        break 
+      case 'format_size':
+        changeTextFormat('fontSize', 7)
+        break 
+    }
+    postContents.focus({preventScroll: true})
+  })
+  // 텍스트 정렬
+  const alignTool = document.querySelector('.align-tool')
+  alignTool.addEventListener('click', function(event){
+    console.log(event.target.innerText)
+    switch(event.target.innerText){
+      case 'format_align_left':
+        changeTextFormat('justifyLeft')
+        break
+      case 'format_align_center':
+        changeTextFormat('justifyCenter')
+        break 
+      case 'format_align_right':
+        changeTextFormat('justifyRight')
+        break
+      case 'format_align_justify':
+        changeTextFormat('justifyFull')
+        break
+    }
+  })
+
 
   function createNewline(){
     const newline = document.createElement('div')
@@ -131,7 +180,7 @@ window.addEventListener("load", (event) => {
   }
   function getFileName(name, limit){
     return name.length > limit ? `${name.slice(0, limit)}... ${name.slice(name.lastIndexOf('.'), name.length)}` : name
-}
+  }
   function getFileSize(number) {
     if(number < 1024) {
       return number + 'bytes';
@@ -147,5 +196,9 @@ window.addEventListener("load", (event) => {
       mediaElement[option] = options[option]
     }
     return mediaElement
+  }
+  function changeTextFormat(style, param){
+    console.log(style)
+    document.execCommand(style, false, param)
   }
 })

@@ -130,7 +130,7 @@ header .toolbox > div> a label{
 /* 다크모드 */
 .post-container .post-title input.dark, 
 .post-container .post-contents textarea.dark,
-.post-container .post-tags input.dark{ 
+.post-container .post-tags input.dark{
   color: #fff;
   background: #333;
 }
