@@ -113,6 +113,7 @@ window.addEventListener("load", (event) => {
     lastCaretLine = document.getSelection().anchorNode // 편집기 내부 커서가 위치한 곳의 엘리먼트 
     // console.log(lastCaretLine.parentNode, lastCaretLine, lastCaretLine.length)
   })
+  const toolBox = document.querySelector('.toolbox')
   // 텍스트 포맷
   const textTool = document.querySelector('.text-tool')
   const colorBoxes = textTool.querySelectorAll('.text-tool .color-box') // 추가
@@ -134,15 +135,15 @@ window.addEventListener("load", (event) => {
         changeTextFormat('strikeThrough')
         break 
       case 'format_color_text':
-        hideDropdown(textTool, 'format_color_text')
+        hideDropdown(toolBox, 'format_color_text')
         colorBoxes[0].classList.toggle('show')
         break 
       case 'format_color_fill':
-        hideDropdown(textTool, 'format_color_fill')
+        hideDropdown(toolBox, 'format_color_fill')
         colorBoxes[1].classList.toggle('show')
         break 
       case 'format_size':
-        hideDropdown(textTool, 'format_size')
+        hideDropdown(toolBox, 'format_size')
         fontBox.classList.toggle('show')
         break 
     }
@@ -170,6 +171,27 @@ window.addEventListener("load", (event) => {
   colorBoxes[0].addEventListener('click', (event) => changeColor(event, 'foreground'))
   colorBoxes[1].addEventListener('click', (event) => changeColor(event, 'background'))
   fontBox.addEventListener('click', changeFontSize)
+
+  // 부가기능
+  const linkTool = document.querySelector('.link-tool')
+  const imoticonBox = document.querySelector('.link-tool .imoticon-box')
+  linkTool.addEventListener('click', function(event){
+    event.stopPropagation() // document 의 click 이벤트와 충돌하지 않도록 함
+    console.log(event.target.innerText)
+    switch(event.target.innerText){
+      case 'sentiment_satisfied':
+        hideDropdown(toolBox, 'sentiment_satisfied')
+        imoticonBox.classList.toggle('show')
+        break 
+      case 'table_view':
+        break 
+      case 'link':
+        break 
+      case 'format_list_bulleted':
+        break 
+    }
+  })
+  imoticonBox.addEventListener('click', addImoticon)
 
   function createNewline(){
     const newline = document.createElement('div')
@@ -239,6 +261,14 @@ window.addEventListener("load", (event) => {
     console.log(event.target)
     if(!event.target.classList.contains('select-menu-dropdown')){
       changeTextFormat('fontSize', event.target.id) // 폰트크기 변경
+      event.target.parentElement.classList.remove('show') // 드롭다운 메뉴 숨기기
+    }
+  }
+  function addImoticon(event){
+    event.stopPropagation()
+    console.log(event.target)
+    if(!event.target.classList.contains('select-menu-dropdown')){
+      changeTextFormat('insertText', event.target.innerText) // 아이콘 추가 
       event.target.parentElement.classList.remove('show') // 드롭다운 메뉴 숨기기
     }
   }

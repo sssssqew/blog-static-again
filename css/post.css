@@ -198,3 +198,16 @@ header .toolbox > div > a label{
 .font-box.show{
   flex-flow: column;
 }
+/* 이모티콘 드롭다운 */
+.imoticon-box{
+  width: 12rem;
+}
+.imoticon-box span{
+  font-size: 1.5rem;
+  margin: .2rem;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+.imoticon-box.show{
+  flex-wrap: wrap;
+}
