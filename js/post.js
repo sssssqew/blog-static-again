@@ -111,12 +111,15 @@ window.addEventListener("load", (event) => {
   // blur일때 마지막 커서 위치의 엘리먼트 저장하기
   postContents.addEventListener('blur', function(event){ 
     lastCaretLine = document.getSelection().anchorNode // 편집기 내부 커서가 위치한 곳의 엘리먼트 
-    console.log(lastCaretLine.parentNode, lastCaretLine, lastCaretLine.length)
+    // console.log(lastCaretLine.parentNode, lastCaretLine, lastCaretLine.length)
   })
   // 텍스트 포맷
   const textTool = document.querySelector('.text-tool')
+  const colorBoxes = textTool.querySelectorAll('.text-tool .color-box') // 추가
+  const fontBox = textTool.querySelector('.text-tool .font-box') // 추가 
   textTool.addEventListener('click', function(event){
-    console.log(event.target.innerText)
+    event.stopPropagation() // document 의 click 이벤트와 충돌하지 않도록 함
+    // console.log(event.target.innerText)
     switch(event.target.innerText){
       case 'format_bold':
         changeTextFormat('bold')
@@ -132,12 +135,18 @@ window.addEventListener("load", (event) => {
         break 
       case 'format_color_text':
         changeTextFormat('foreColor', 'orange')
+        hideDropdown(textTool, 'format_color_text')
+        colorBoxes[0].classList.toggle('show')
         break 
       case 'format_color_fill':
         changeTextFormat('backColor', 'black')
+        hideDropdown(textTool, 'format_color_fill')
+        colorBoxes[1].classList.toggle('show')
         break 
       case 'format_size':
         changeTextFormat('fontSize', 7)
+        hideDropdown(textTool, 'format_size')
+        fontBox.classList.toggle('show')
         break 
     }
     postContents.focus({preventScroll: true})
@@ -198,7 +207,21 @@ window.addEventListener("load", (event) => {
     return mediaElement
   }
   function changeTextFormat(style, param){
-    console.log(style)
+    // console.log(style)
     document.execCommand(style, false, param)
+  }
+  function hideDropdown(toolbox, currentDropdwon){
+    const dropdown = toolbox.querySelector('.select-menu-dropdown.show')
+
+    // 현재 보이는 드롭다운 메뉴가 현재 클릭한 드롭다운 메뉴가 아닌 경우
+    // 현재 클릭한 드롭다운 메뉴만 토글하고 나머지 메뉴는 화면에서 가린다
+    if(dropdown && dropdown.parentElement.querySelector('a span').innerText  !== currentDropdwon) 
+      dropdown.classList.remove('show')
+  }
+})
+document.addEventListener('click', function(e){
+  const dropdownMenu = document.querySelector('.select-menu-dropdown.show')
+  if(dropdownMenu && !dropdownMenu.contains(e.target)){ // 현재 열려있는 드롭다운이 존재하고 현재 클릭한 곳이 드롭다운 메뉴가 아닌 경우
+    dropdownMenu.classList.remove('show')
   }
 })

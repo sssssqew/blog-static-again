@@ -21,14 +21,14 @@ header .toolbox > div{
   border-right: 1px solid #eee;
   padding: 0 .5rem;
 }
-header .toolbox > div > a{
+header .toolbox > div a{
   margin: 0 .2rem;
   transition: .3s;
 }
-header .toolbox > div > a:hover{
+header .toolbox > div a:hover{
   color: var(--primary-color);
 }
-header .toolbox > div> a label{ 
+header .toolbox > div > a label{ 
   cursor: pointer;
 }
 /* 블로그 편집기 */
@@ -133,4 +133,67 @@ header .toolbox > div> a label{
 .post-container .post-tags input.dark{
   color: #fff;
   background: #333;
+}
+/* 드롭다운 메뉴 */
+.select-menu{
+  max-width: 2rem;
+  display: inline-flex;
+  flex-flow: column;
+  align-items: center;
+  position: relative;
+}
+.select-menu-dropdown{
+  background-color: #fff;
+  position: absolute;
+  display: none;
+  top: 45px; /* 아이콘 높이만큼 아래쪽에 드롭다운 배치 */
+  border: 1px solid #ddd;
+  padding: 1rem;
+}
+.select-menu-dropdown::before{
+  content: '';
+  width: 1.4rem;
+  height: 1.4rem;
+  background-color: #fff;
+  position: absolute;
+  left: 50%; top: -0.7rem;
+  transform: translateX(-50%) rotateZ(45deg);
+  border: 1px solid #ddd;
+  border-right: none;
+  border-bottom: none;
+}
+.select-menu-dropdown.show{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* 색상 드롭다운 */
+.color-box{
+  width: 10rem;
+}
+.color-box span{
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  margin: .2rem;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+.color-box.show{
+  flex-wrap: wrap;
+}
+/* 폰트 드롭다운 */
+.font-box{
+  width: 12rem;
+}
+.font-box span{
+  width: 100%;
+  padding: .5rem;
+  cursor: pointer;
+}
+.font-box span:hover{
+  background-color: #eee;
+}
+.font-box.show{
+  flex-flow: column;
 }
