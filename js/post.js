@@ -134,12 +134,10 @@ window.addEventListener("load", (event) => {
         changeTextFormat('strikeThrough')
         break 
       case 'format_color_text':
-        changeTextFormat('foreColor', 'orange')
         hideDropdown(textTool, 'format_color_text')
         colorBoxes[0].classList.toggle('show')
         break 
       case 'format_color_fill':
-        changeTextFormat('backColor', 'black')
         hideDropdown(textTool, 'format_color_fill')
         colorBoxes[1].classList.toggle('show')
         break 
@@ -149,7 +147,7 @@ window.addEventListener("load", (event) => {
         fontBox.classList.toggle('show')
         break 
     }
-    postContents.focus({preventScroll: true})
+    // postContents.focus({preventScroll: true})
   })
   // 텍스트 정렬
   const alignTool = document.querySelector('.align-tool')
@@ -170,7 +168,8 @@ window.addEventListener("load", (event) => {
         break
     }
   })
-
+  colorBoxes[0].addEventListener('click', (event) => changeColor(event, 'foreground'))
+  colorBoxes[1].addEventListener('click', (event) => changeColor(event, 'background'))
 
   function createNewline(){
     const newline = document.createElement('div')
@@ -209,6 +208,7 @@ window.addEventListener("load", (event) => {
   function changeTextFormat(style, param){
     // console.log(style)
     document.execCommand(style, false, param)
+    postContents.focus({preventScroll: true})
   }
   function hideDropdown(toolbox, currentDropdwon){
     const dropdown = toolbox.querySelector('.select-menu-dropdown.show')
@@ -217,6 +217,22 @@ window.addEventListener("load", (event) => {
     // 현재 클릭한 드롭다운 메뉴만 토글하고 나머지 메뉴는 화면에서 가린다
     if(dropdown && dropdown.parentElement.querySelector('a span').innerText  !== currentDropdwon) 
       dropdown.classList.remove('show')
+  }
+  function changeColor(event, mode){
+    event.stopPropagation()
+    // console.log(mode, event.target)
+    if(!event.target.classList.contains('select-menu-dropdown')){
+      console.log(mode, event.target.style.backgroundColor)
+      switch(mode){
+        case 'foreground':
+          changeTextFormat('foreColor', event.target.style.backgroundColor) // 글자색 변경
+          break 
+        case 'background':
+          changeTextFormat('backColor', event.target.style.backgroundColor) // 배경색 변경
+          break 
+      }
+      event.target.parentElement.classList.remove('show') // 드롭다운 메뉴 숨기기
+    }
   }
 })
 document.addEventListener('click', function(e){

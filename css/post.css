@@ -149,6 +149,7 @@ header .toolbox > div > a label{
   top: 45px; /* 아이콘 높이만큼 아래쪽에 드롭다운 배치 */
   border: 1px solid #ddd;
   padding: 1rem;
+  user-select: none; /* 드롭다운 메뉴에서 아이템을 선택하면 편집기에서 사용자가 선택한 범위가 사라지는데 드롭다운 메뉴가 새로운 범위로 선택되지 않게 함 */
 }
 .select-menu-dropdown::before{
   content: '';
