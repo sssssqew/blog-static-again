@@ -142,7 +142,6 @@ window.addEventListener("load", (event) => {
         colorBoxes[1].classList.toggle('show')
         break 
       case 'format_size':
-        changeTextFormat('fontSize', 7)
         hideDropdown(textTool, 'format_size')
         fontBox.classList.toggle('show')
         break 
@@ -170,6 +169,7 @@ window.addEventListener("load", (event) => {
   })
   colorBoxes[0].addEventListener('click', (event) => changeColor(event, 'foreground'))
   colorBoxes[1].addEventListener('click', (event) => changeColor(event, 'background'))
+  fontBox.addEventListener('click', changeFontSize)
 
   function createNewline(){
     const newline = document.createElement('div')
@@ -231,6 +231,14 @@ window.addEventListener("load", (event) => {
           changeTextFormat('backColor', event.target.style.backgroundColor) // 배경색 변경
           break 
       }
+      event.target.parentElement.classList.remove('show') // 드롭다운 메뉴 숨기기
+    }
+  }
+  function changeFontSize(event){
+    event.stopPropagation()
+    console.log(event.target)
+    if(!event.target.classList.contains('select-menu-dropdown')){
+      changeTextFormat('fontSize', event.target.id) // 폰트크기 변경
       event.target.parentElement.classList.remove('show') // 드롭다운 메뉴 숨기기
     }
   }
